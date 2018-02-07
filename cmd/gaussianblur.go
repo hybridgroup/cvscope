@@ -17,8 +17,8 @@ var ksize, sigmax, sigmay *gocv.Trackbar
 
 var gaussianBlurCmd = &cobra.Command{
 	Use:   "gaussianblur",
-	Short: "gaussianblur",
-	Long:  `gaussianblur`,
+	Short: "Apply Gaussian blur to video images",
+	Long:  `Apply Gaussian blur to video images`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleGaussianBlurCmd()
 	},

@@ -16,8 +16,8 @@ var currentErodeShape int
 
 var erodeCmd = &cobra.Command{
 	Use:   "erode",
-	Short: "erode",
-	Long:  `erode`,
+	Short: "Erode video images",
+	Long:  `Erode video images`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleErodeCmd()
 	},

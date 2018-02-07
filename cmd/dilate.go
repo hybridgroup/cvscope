@@ -16,8 +16,8 @@ var currentDilateShape int
 
 var dilateCmd = &cobra.Command{
 	Use:   "dilate",
-	Short: "dilate",
-	Long:  `dilate`,
+	Short: "Dilate video images",
+	Long:  `Dilate video images`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleDilateCmd()
 	},
