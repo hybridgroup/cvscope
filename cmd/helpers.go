@@ -1,0 +1,83 @@
+package cmd
+
+import (
+	"fmt"
+
+	"gocv.io/x/gocv"
+)
+
+func codeFragmentHeader(lang string) {
+	fmt.Println("===============================")
+	fmt.Printf("%s code for current filter:\n", lang)
+	fmt.Println("-------------------------------")
+}
+
+func prevShape(currentShape int) int {
+	currentShape--
+	if currentShape < 0 {
+		currentShape = 2
+	}
+
+	return currentShape
+}
+
+func nextShape(currentShape int) int {
+	return (currentShape + 1) % 3
+}
+
+func getCurrentMorphShape(currentShape int) gocv.MorphShape {
+	return gocv.MorphShape(currentShape)
+}
+
+func getCurrentMorphShapeDescription(currentShape int) string {
+	switch currentShape {
+	case 0:
+		return "MorphRect"
+	case 1:
+		return "MorphCross"
+	case 2:
+		return "MorphEllipse"
+	}
+
+	return "Unknown"
+}
+
+func getCurrentBorder(currentBorder int) gocv.BorderType {
+	return gocv.BorderType(currentBorder)
+}
+
+func getCurrentBorderDescription(currentBorder int) string {
+	switch currentBorder {
+	case 0:
+		return "BorderConstant"
+	case 1:
+		return "BorderReplicate"
+	case 2:
+		return "BorderReflect"
+	case 4:
+		return "BorderReflect101"
+	}
+
+	return "Unknown"
+}
+
+func prevBorder(currentBorder int) int {
+	currentBorder--
+	if currentBorder < 0 {
+		currentBorder = 4
+	}
+	if currentBorder == 3 {
+		currentBorder = 2
+	}
+
+	return currentBorder
+}
+
+func nextBorder(currentBorder int) int {
+	currentBorder = (currentBorder + 1) % 5
+	if currentBorder == 3 {
+		currentBorder = 4
+	}
+
+	return currentBorder
+}
