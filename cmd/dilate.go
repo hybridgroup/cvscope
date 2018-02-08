@@ -34,9 +34,13 @@ func handleDilateCmd() {
 	window := gocv.NewWindow(dilateWindowTitle())
 	defer window.Close()
 
-	tracker := window.CreateTrackbar("ksize", 25)
-	tracker.SetMin(1)
-	tracker.SetPos(12)
+	trackerX := window.CreateTrackbar("ksize X", 25)
+	trackerX.SetMin(1)
+	trackerX.SetPos(12)
+
+	trackerY := window.CreateTrackbar("ksize Y", 25)
+	trackerY.SetMin(1)
+	trackerY.SetPos(12)
 
 	img := gocv.NewMat()
 	defer img.Close()
@@ -56,7 +60,7 @@ MainLoop:
 		}
 
 		// Dilate image proccessing filter
-		kernel := gocv.GetStructuringElement(getCurrentMorphShape(currentDilateShape), image.Pt(tracker.GetPos(), tracker.GetPos()))
+		kernel := gocv.GetStructuringElement(getCurrentMorphShape(currentDilateShape), image.Pt(trackerX.GetPos(), trackerY.GetPos()))
 		defer kernel.Close()
 		gocv.Dilate(img, processed, kernel)
 
@@ -76,10 +80,10 @@ MainLoop:
 			window.SetWindowTitle(dilateWindowTitle())
 		case 103:
 			// 'g'
-			dilateGoCodeFragment(getCurrentMorphShapeDescription(currentDilateShape), tracker.GetPos(), tracker.GetPos())
+			dilateGoCodeFragment(getCurrentMorphShapeDescription(currentDilateShape), trackerX.GetPos(), trackerY.GetPos())
 		case 112:
 			// 'p'
-			dilatePythonCodeFragment(tracker.GetPos(), currentDilateShape)
+			dilatePythonCodeFragment(currentDilateShape, trackerX.GetPos(), trackerY.GetPos())
 		case 27:
 			// 'ESC'
 			break MainLoop
@@ -97,7 +101,7 @@ func dilateGoCodeFragment(morphType string, x, y int) {
 	fmt.Printf("gocv.Dilate(src, dest, kernel)\n\n")
 }
 
-func dilatePythonCodeFragment(pos int, morphType int) {
+func dilatePythonCodeFragment(morphType, x, y int) {
 	codeFragmentHeader("Python")
-	fmt.Println("Upgrade to pro")
+	fmt.Println("Not implemented.")
 }
