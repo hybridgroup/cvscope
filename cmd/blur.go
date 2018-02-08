@@ -46,6 +46,7 @@ func handleBlurCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
+	pause := false
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
@@ -60,8 +61,12 @@ MainLoop:
 		// Blur image proccessing filter
 		gocv.Blur(img, processed, image.Pt(trackerX.GetPos(), trackerY.GetPos()))
 
-		// Display the processed image
-		window.IMShow(processed)
+		// Display the processed image?
+		if pause {
+			window.IMShow(img)
+		} else {
+			window.IMShow(processed)
+		}
 
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
@@ -72,6 +77,14 @@ MainLoop:
 		case 112:
 			// 'p'
 			blurPythonCodeFragment(trackerX.GetPos(), trackerY.GetPos())
+		case 32:
+			// 'space'
+			pause = !pause
+			text := blurWindowTitle()
+			if pause {
+				text = "**PAUSED** " + text
+			}
+			window.SetWindowTitle(text)
 		case 27:
 			// 'ESC'
 			break MainLoop
@@ -80,7 +93,7 @@ MainLoop:
 }
 
 func blurWindowTitle() string {
-	return "Blur - CV Toolkit"
+	return "Blur - CVscope"
 }
 
 func blurGoCodeFragment(x, y int) {

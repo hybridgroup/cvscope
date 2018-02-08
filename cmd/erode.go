@@ -48,6 +48,7 @@ func handleErodeCmd() {
 	trackerY.SetMin(1)
 	trackerY.SetPos(12)
 
+	pause := false
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
@@ -64,8 +65,12 @@ MainLoop:
 		gocv.Erode(img, processed, kernel)
 		kernel.Close()
 
-		// Display the processed image
-		window.IMShow(processed)
+		// Display the processed image?
+		if pause {
+			window.IMShow(img)
+		} else {
+			window.IMShow(processed)
+		}
 
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
@@ -84,6 +89,14 @@ MainLoop:
 		case 112:
 			// 'p'
 			erodePythonCodeFragment(currentErodeShape, trackerX.GetPos(), trackerY.GetPos())
+		case 32:
+			// 'space'
+			pause = !pause
+			text := erodeWindowTitle()
+			if pause {
+				text = "**PAUSED** " + text
+			}
+			window.SetWindowTitle(text)
 		case 27:
 			// 'ESC'
 			break MainLoop

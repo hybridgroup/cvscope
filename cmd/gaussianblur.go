@@ -55,6 +55,7 @@ func handleGaussianBlurCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
+	pause := false
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
@@ -72,8 +73,12 @@ MainLoop:
 		// GaussianBlur image proccessing filter
 		gocv.GaussianBlur(img, processed, image.Pt(kX, kY), sX, sY, getCurrentBorder(currentGaussianBlurBorder))
 
-		// Display the processed image
-		window.IMShow(processed)
+		// Display the processed image?
+		if pause {
+			window.IMShow(img)
+		} else {
+			window.IMShow(processed)
+		}
 
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
@@ -92,6 +97,14 @@ MainLoop:
 		case 112:
 			// 'p'
 			gaussianBlurPythonCodeFragment(kX, kY, sX, sY, currentGaussianBlurBorder)
+		case 32:
+			// 'space'
+			pause = !pause
+			text := gaussianBlurWindowTitle()
+			if pause {
+				text = "**PAUSED** " + text
+			}
+			window.SetWindowTitle(text)
 		case 27:
 			// 'ESC'
 			break MainLoop

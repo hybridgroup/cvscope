@@ -30,7 +30,7 @@ func handleThresholdCmd() {
 	}
 	defer webcam.Close()
 
-	window := gocv.NewWindow(windowTitle())
+	window := gocv.NewWindow(thresholdWindowTitle())
 	defer window.Close()
 
 	tracker := window.CreateTrackbar("threshold", 255)
@@ -42,6 +42,7 @@ func handleThresholdCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
+	pause := false
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
@@ -56,8 +57,12 @@ MainLoop:
 		// Threshold image proccessing filter
 		gocv.Threshold(img, processed, float32(tracker.GetPos()), 255.0, getCurrentThreshold())
 
-		// Display the processed image
-		window.IMShow(processed)
+		// Display the processed image?
+		if pause {
+			window.IMShow(img)
+		} else {
+			window.IMShow(processed)
+		}
 
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
@@ -65,17 +70,25 @@ MainLoop:
 		case 122:
 			// 'z'
 			prevThreshold()
-			window.SetWindowTitle(windowTitle())
+			window.SetWindowTitle(thresholdWindowTitle())
 		case 120:
 			// 'x'
 			nextThreshold()
-			window.SetWindowTitle(windowTitle())
+			window.SetWindowTitle(thresholdWindowTitle())
 		case 103:
 			// 'g'
 			thresholdGoCodeFragment(tracker.GetPos(), getCurrentThresholdDescription())
 		case 112:
 			// 'p'
 			thresholdPythonCodeFragment(tracker.GetPos(), currentThreshold)
+		case 32:
+			// 'space'
+			pause = !pause
+			text := thresholdWindowTitle()
+			if pause {
+				text = "**PAUSED** " + text
+			}
+			window.SetWindowTitle(text)
 		case 27:
 			// 'ESC'
 			break MainLoop
@@ -115,7 +128,7 @@ func nextThreshold() {
 	currentThreshold = (currentThreshold + 1) % 5
 }
 
-func windowTitle() string {
+func thresholdWindowTitle() string {
 	return getCurrentThresholdDescription() + " - Threshold - CV Toolkit"
 }
 
