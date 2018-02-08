@@ -40,9 +40,13 @@ func handleErodeCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
-	tracker := window.CreateTrackbar("ksize", 25)
-	tracker.SetMin(1)
-	tracker.SetPos(12)
+	trackerX := window.CreateTrackbar("ksize X", 25)
+	trackerX.SetMin(1)
+	trackerX.SetPos(12)
+
+	trackerY := window.CreateTrackbar("ksize Y", 25)
+	trackerY.SetMin(1)
+	trackerY.SetPos(12)
 
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
@@ -56,9 +60,9 @@ MainLoop:
 		}
 
 		// Erode image proccessing filter
-		kernel := gocv.GetStructuringElement(getCurrentMorphShape(currentErodeShape), image.Pt(tracker.GetPos(), tracker.GetPos()))
-		defer kernel.Close()
+		kernel := gocv.GetStructuringElement(getCurrentMorphShape(currentErodeShape), image.Pt(trackerX.GetPos(), trackerY.GetPos()))
 		gocv.Erode(img, processed, kernel)
+		kernel.Close()
 
 		// Display the processed image
 		window.IMShow(processed)
@@ -76,10 +80,10 @@ MainLoop:
 			window.SetWindowTitle(erodeWindowTitle())
 		case 103:
 			// 'g'
-			erodeGoCodeFragment(getCurrentMorphShapeDescription(currentErodeShape), tracker.GetPos(), tracker.GetPos())
+			erodeGoCodeFragment(getCurrentMorphShapeDescription(currentErodeShape), trackerX.GetPos(), trackerY.GetPos())
 		case 112:
 			// 'p'
-			erodePythonCodeFragment(tracker.GetPos(), currentErodeShape)
+			erodePythonCodeFragment(currentErodeShape, trackerX.GetPos(), trackerY.GetPos())
 		case 27:
 			// 'ESC'
 			break MainLoop
@@ -97,7 +101,7 @@ func erodeGoCodeFragment(morphType string, x, y int) {
 	fmt.Printf("gocv.Erode(src, dest, kernel)\n\n")
 }
 
-func erodePythonCodeFragment(pos int, morphType int) {
+func erodePythonCodeFragment(morphType, x, y int) {
 	codeFragmentHeader("Python")
-	fmt.Println("Upgrade to pro")
+	fmt.Println("Not implemented.")
 }
