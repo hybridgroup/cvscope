@@ -15,8 +15,8 @@ var currentThreshold int
 
 var thresholdCmd = &cobra.Command{
 	Use:   "threshold",
-	Short: "Apply threshold to video images",
-	Long:  `Apply threshold to video images`,
+	Short: "Apply threshold filter to video images",
+	Long:  `Apply threshold filter to video images`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleThresholdCmd()
 	},
