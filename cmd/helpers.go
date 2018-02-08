@@ -81,3 +81,15 @@ func nextBorder(currentBorder int) int {
 
 	return currentBorder
 }
+
+// ksize has to be either 0 or an odd number
+func ensureOdd(tracker *gocv.Trackbar) int {
+	size := tracker.GetPos()
+
+	if size%2 == 1 || size == 0 {
+		return size
+	}
+
+	tracker.SetPos(size - 1)
+	return size - 1
+}

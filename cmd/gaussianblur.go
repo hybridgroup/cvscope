@@ -68,7 +68,7 @@ MainLoop:
 		}
 
 		// make sure we do not have any invalid values
-		validateTrackers()
+		validateGaussianBlurTrackers()
 
 		// GaussianBlur image proccessing filter
 		gocv.GaussianBlur(img, processed, image.Pt(kX, kY), sX, sY, getCurrentBorder(currentGaussianBlurBorder))
@@ -113,7 +113,7 @@ MainLoop:
 }
 
 // either ksize or sigmax have to be non-zero
-func validateTrackers() {
+func validateGaussianBlurTrackers() {
 	if sigmaX.GetPos() == 0 {
 		if ksizeX.GetPos() == 0 {
 			ksizeX.SetPos(1)
@@ -127,18 +127,6 @@ func validateTrackers() {
 	kY = ensureOdd(ksizeY)
 	sX = float64(sigmaX.GetPos())
 	sY = float64(sigmaY.GetPos())
-}
-
-// ksize has to be either 0 or an odd number
-func ensureOdd(tracker *gocv.Trackbar) int {
-	size := tracker.GetPos()
-
-	if size%2 == 1 || size == 0 {
-		return size
-	}
-
-	tracker.SetPos(size - 1)
-	return size - 1
 }
 
 func gaussianBlurWindowTitle() string {
