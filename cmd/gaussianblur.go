@@ -13,7 +13,9 @@ func init() {
 }
 
 var currentGaussianBlurBorder int
-var ksize, sigmax, sigmay *gocv.Trackbar
+var ksizeX, ksizeY, sigmaX, sigmaY *gocv.Trackbar
+var kX, kY int
+var sX, sY float64
 
 var gaussianBlurCmd = &cobra.Command{
 	Use:   "gaussianblur",
@@ -25,7 +27,7 @@ var gaussianBlurCmd = &cobra.Command{
 }
 
 func handleGaussianBlurCmd() {
-	webcam, err := gocv.VideoCaptureDevice(int(deviceID))
+	webcam, err := gocv.VideoCaptureDevice(deviceID)
 	if err != nil {
 		fmt.Printf("Error opening video capture device: %v\n", deviceID)
 		return
@@ -35,14 +37,17 @@ func handleGaussianBlurCmd() {
 	window := gocv.NewWindow(gaussianBlurWindowTitle())
 	defer window.Close()
 
-	ksize = window.CreateTrackbar("ksize", 25)
-	ksize.SetPos(0)
+	ksizeX = window.CreateTrackbar("ksize X", 25)
+	ksizeX.SetPos(0)
 
-	sigmax = window.CreateTrackbar("sigma X", 60)
-	sigmax.SetPos(30)
+	ksizeY = window.CreateTrackbar("ksize Y", 25)
+	ksizeY.SetPos(0)
 
-	sigmay = window.CreateTrackbar("sigma Y", 60)
-	sigmay.SetPos(0)
+	sigmaX = window.CreateTrackbar("sigma X", 60)
+	sigmaX.SetPos(30)
+
+	sigmaY = window.CreateTrackbar("sigma Y", 60)
+	sigmaY.SetPos(0)
 
 	img := gocv.NewMat()
 	defer img.Close()
@@ -65,8 +70,7 @@ MainLoop:
 		validateTrackers()
 
 		// GaussianBlur image proccessing filter
-		gocv.GaussianBlur(img, processed, image.Pt(ksize.GetPos(), ksize.GetPos()), float64(sigmax.GetPos()),
-			float64(sigmay.GetPos()), getCurrentBorder(currentGaussianBlurBorder))
+		gocv.GaussianBlur(img, processed, image.Pt(kX, kY), sX, sY, getCurrentBorder(currentGaussianBlurBorder))
 
 		// Display the processed image
 		window.IMShow(processed)
@@ -84,10 +88,10 @@ MainLoop:
 			window.SetWindowTitle(gaussianBlurWindowTitle())
 		case 103:
 			// 'g'
-			gaussianBlurGoCodeFragment(ksize.GetPos(), ksize.GetPos(), float64(sigmax.GetPos()), float64(sigmay.GetPos()), getCurrentBorderDescription(currentGaussianBlurBorder))
+			gaussianBlurGoCodeFragment(kX, kY, sX, sY, getCurrentBorderDescription(currentGaussianBlurBorder))
 		case 112:
 			// 'p'
-
+			gaussianBlurPythonCodeFragment(kX, kY, sX, sY, currentGaussianBlurBorder)
 		case 27:
 			// 'ESC'
 			break MainLoop
@@ -97,9 +101,19 @@ MainLoop:
 
 // either ksize or sigmax have to be non-zero
 func validateTrackers() {
-	if ensureOdd(ksize) == 0 && sigmax.GetPos() == 0 {
-		ksize.SetPos(1)
+	if sigmaX.GetPos() == 0 {
+		if ksizeX.GetPos() == 0 {
+			ksizeX.SetPos(1)
+		}
+		if ksizeY.GetPos() == 0 {
+			ksizeY.SetPos(1)
+		}
 	}
+
+	kX = ensureOdd(ksizeX)
+	kY = ensureOdd(ksizeY)
+	sX = float64(sigmaX.GetPos())
+	sY = float64(sigmaY.GetPos())
 }
 
 // ksize has to be either 0 or an odd number
@@ -124,7 +138,7 @@ func gaussianBlurGoCodeFragment(x, y int, sx, sy float64, borderType string) {
 		x, y, sx, sy, borderType)
 }
 
-func gaussianBlurPythonCodeFragment(pos int, threshType int) {
+func gaussianBlurPythonCodeFragment(x, y int, sx, sy float64, borderType int) {
 	codeFragmentHeader("Python")
-	fmt.Println("Upgrade to pro")
+	fmt.Println("Not implemented.")
 }
