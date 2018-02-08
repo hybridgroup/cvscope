@@ -24,7 +24,7 @@ var dilateCmd = &cobra.Command{
 }
 
 func handleDilateCmd() {
-	webcam, err := gocv.VideoCaptureDevice(int(deviceID))
+	webcam, err := gocv.VideoCaptureDevice(deviceID)
 	if err != nil {
 		fmt.Printf("Error opening video capture device: %v\n", deviceID)
 		return
@@ -61,8 +61,8 @@ MainLoop:
 
 		// Dilate image proccessing filter
 		kernel := gocv.GetStructuringElement(getCurrentMorphShape(currentDilateShape), image.Pt(trackerX.GetPos(), trackerY.GetPos()))
-		defer kernel.Close()
 		gocv.Dilate(img, processed, kernel)
+		kernel.Close()
 
 		// Display the processed image
 		window.IMShow(processed)
