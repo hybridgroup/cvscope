@@ -13,9 +13,9 @@ func init() {
 }
 
 var currentGaussianBlurBorder int
-var ksizeX, ksizeY, sigmaX, sigmaY *gocv.Trackbar
-var kX, kY int
-var sX, sY float64
+var gaussianKsizeX, gaussianKsizeY, gaussianSigmaX, gaussianSigmaY *gocv.Trackbar
+var gaussianKX, gaussianKY int
+var gaussianSX, gaussianSY float64
 
 var gaussianBlurCmd = &cobra.Command{
 	Use:   "gaussianblur",
@@ -37,17 +37,17 @@ func handleGaussianBlurCmd() {
 	window := gocv.NewWindow(gaussianBlurWindowTitle())
 	defer window.Close()
 
-	ksizeX = window.CreateTrackbar("ksize X", 25)
-	ksizeX.SetPos(0)
+	gaussianKsizeX = window.CreateTrackbar("ksize X", 25)
+	gaussianKsizeX.SetPos(0)
 
-	ksizeY = window.CreateTrackbar("ksize Y", 25)
-	ksizeY.SetPos(0)
+	gaussianKsizeY = window.CreateTrackbar("ksize Y", 25)
+	gaussianKsizeY.SetPos(0)
 
-	sigmaX = window.CreateTrackbar("sigma X", 60)
-	sigmaX.SetPos(30)
+	gaussianSigmaX = window.CreateTrackbar("sigma X", 60)
+	gaussianSigmaX.SetPos(30)
 
-	sigmaY = window.CreateTrackbar("sigma Y", 60)
-	sigmaY.SetPos(0)
+	gaussianSigmaY = window.CreateTrackbar("sigma Y", 60)
+	gaussianSigmaY.SetPos(0)
 
 	img := gocv.NewMat()
 	defer img.Close()
@@ -71,7 +71,7 @@ MainLoop:
 		validateGaussianBlurTrackers()
 
 		// GaussianBlur image proccessing filter
-		gocv.GaussianBlur(img, processed, image.Pt(kX, kY), sX, sY, getCurrentBorder(currentGaussianBlurBorder))
+		gocv.GaussianBlur(img, processed, image.Pt(gaussianKX, gaussianKY), gaussianSX, gaussianSY, getCurrentBorder(currentGaussianBlurBorder))
 
 		// Display the processed image?
 		if pause {
@@ -93,10 +93,10 @@ MainLoop:
 			window.SetWindowTitle(gaussianBlurWindowTitle())
 		case 103:
 			// 'g'
-			gaussianBlurGoCodeFragment(kX, kY, sX, sY, getCurrentBorderDescription(currentGaussianBlurBorder))
+			gaussianBlurGoCodeFragment(gaussianKX, gaussianKY, gaussianSX, gaussianSY, getCurrentBorderDescription(currentGaussianBlurBorder))
 		case 112:
 			// 'p'
-			gaussianBlurPythonCodeFragment(kX, kY, sX, sY, currentGaussianBlurBorder)
+			gaussianBlurPythonCodeFragment(gaussianKX, gaussianKY, gaussianSX, gaussianSY, currentGaussianBlurBorder)
 		case 32:
 			// 'space'
 			pause = !pause
@@ -114,19 +114,19 @@ MainLoop:
 
 // either ksize or sigmax have to be non-zero
 func validateGaussianBlurTrackers() {
-	if sigmaX.GetPos() == 0 {
-		if ksizeX.GetPos() == 0 {
-			ksizeX.SetPos(1)
+	if gaussianSigmaX.GetPos() == 0 {
+		if gaussianKsizeX.GetPos() == 0 {
+			gaussianKsizeX.SetPos(1)
 		}
-		if ksizeY.GetPos() == 0 {
-			ksizeY.SetPos(1)
+		if gaussianKsizeY.GetPos() == 0 {
+			gaussianKsizeY.SetPos(1)
 		}
 	}
 
-	kX = ensureOdd(ksizeX)
-	kY = ensureOdd(ksizeY)
-	sX = float64(sigmaX.GetPos())
-	sY = float64(sigmaY.GetPos())
+	gaussianKX = ensureOdd(gaussianKsizeX)
+	gaussianKY = ensureOdd(gaussianKsizeY)
+	gaussianSX = float64(gaussianSigmaX.GetPos())
+	gaussianSY = float64(gaussianSigmaY.GetPos())
 }
 
 func gaussianBlurWindowTitle() string {
