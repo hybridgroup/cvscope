@@ -23,12 +23,11 @@ var thresholdCmd = &cobra.Command{
 }
 
 func handleThresholdCmd() {
-	webcam, err := gocv.VideoCaptureDevice(int(deviceID))
+	video, err := openVideoSource()
 	if err != nil {
-		fmt.Printf("Error opening video capture device: %v\n", deviceID)
-		return
+		fmt.Printf("Error opening video: %v\n", err)
 	}
-	defer webcam.Close()
+	defer video.Close()
 
 	window := gocv.NewWindow(thresholdWindowTitle())
 	defer window.Close()
@@ -46,7 +45,7 @@ func handleThresholdCmd() {
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
-		if ok := webcam.Read(img); !ok {
+		if ok := video.Read(img); !ok {
 			fmt.Printf("Error cannot read device %d\n", deviceID)
 			return
 		}
