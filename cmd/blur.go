@@ -25,6 +25,7 @@ func handleBlurCmd() {
 	video, err := openVideoSource()
 	if err != nil {
 		fmt.Printf("Error opening video: %v\n", err)
+		return
 	}
 	defer video.Close()
 
