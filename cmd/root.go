@@ -36,9 +36,6 @@ filters and algorithms for computer vision.
 
 It can also generate Go code that them implements the needed commands using the GoCV
 programming library. CVscope is itself written using GoCV.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	//	Run: func(cmd *cobra.Command, args []string) { },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -53,9 +50,6 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cvscope.yaml)")
 	rootCmd.PersistentFlags().IntVarP(&deviceID, "deviceID", "d", 0, "video camera device ID")
 	rootCmd.PersistentFlags().StringVarP(&videoFileName, "filename", "f", "", "video file name")
