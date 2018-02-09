@@ -25,6 +25,7 @@ import (
 
 var cfgFile string
 var deviceID int
+var videoFileName string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -56,7 +57,8 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cvscope.yaml)")
-	rootCmd.PersistentFlags().IntVarP(&deviceID, "deviceID", "d", 0, "device ID")
+	rootCmd.PersistentFlags().IntVarP(&deviceID, "deviceID", "d", 0, "video camera device ID")
+	rootCmd.PersistentFlags().StringVarP(&videoFileName, "filename", "f", "", "video file name")
 }
 
 // initConfig reads in config file and ENV variables if set.

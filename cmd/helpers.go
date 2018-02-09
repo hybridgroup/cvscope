@@ -95,6 +95,11 @@ func ensureOdd(tracker *gocv.Trackbar) int {
 }
 
 func openVideoSource() (*gocv.VideoCapture, error) {
+	if videoFileName != "" {
+		file, err := gocv.VideoCaptureFile(videoFileName)
+		return file, err
+	}
+
 	cam, err := gocv.VideoCaptureDevice(deviceID)
 	return cam, err
 }
