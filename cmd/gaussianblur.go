@@ -20,7 +20,13 @@ var gaussianSX, gaussianSY float64
 var gaussianBlurCmd = &cobra.Command{
 	Use:   "gaussian",
 	Short: "Apply Gaussian blur to video images",
-	Long:  `Apply Gaussian blur to video images`,
+	Long: `Apply Gaussian blur to video images.
+
+Commands:
+  Use 'z' and 'x' keys to page through border calculation types.
+  Press 'esc' to exit.
+  Press 'space' to pause/resume filtering.
+  Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleGaussianBlurCmd()
 	},

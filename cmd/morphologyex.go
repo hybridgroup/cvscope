@@ -18,7 +18,14 @@ var currentMorphOp int
 var morphologyExCmd = &cobra.Command{
 	Use:   "morph",
 	Short: "Perform MorphologyEx operations on video images",
-	Long:  `Perform MorphologyEx operations video images`,
+	Long: `Perform MorphologyEx operations on video images.
+
+Commands:
+  Use 'z' and 'x' keys to page through structuring element shapes.
+  Use 'n' and 'm' keys to page through morphology operations.
+  Press 'esc' to exit.
+  Press 'space' to pause/resume filtering.
+  Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleMorphologyExCmd()
 	},

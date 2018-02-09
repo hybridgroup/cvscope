@@ -17,7 +17,13 @@ var currentDilateShape int
 var dilateCmd = &cobra.Command{
 	Use:   "dilate",
 	Short: "Dilate video images",
-	Long:  `Dilate video images`,
+	Long: `Dilate video images.
+
+Commands:
+  Use 'z' and 'x' keys to page through structuring element shapes.
+  Press 'esc' to exit.
+  Press 'space' to pause/resume filtering.
+  Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleDilateCmd()
 	},

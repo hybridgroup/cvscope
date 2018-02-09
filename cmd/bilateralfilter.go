@@ -14,7 +14,12 @@ func init() {
 var bilateralFilterCmd = &cobra.Command{
 	Use:   "bilateral",
 	Short: "Apply bilateral filter to video images",
-	Long:  `Apply bilateral filter to video images`,
+	Long: `Apply bilateral filter to video images.
+
+Commands:
+  Press 'esc' to exit.
+  Press 'space' to pause/resume filtering.
+  Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleBilateralFilterCmd()
 	},

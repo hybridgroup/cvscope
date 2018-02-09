@@ -6,6 +6,13 @@ import (
 	"gocv.io/x/gocv"
 )
 
+// type CVCommander interface {
+// 	Init()
+// 	Validate()
+// 	WindowTitle() string
+// 	Process(input gocv.Mat, output gocv.Mat)
+// }
+
 func codeFragmentHeader(lang string) {
 	fmt.Println("===============================")
 	fmt.Printf("%s code for current filter:\n", lang)

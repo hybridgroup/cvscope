@@ -19,7 +19,13 @@ var scharrScale, scharrDelta float64
 var scharrCmd = &cobra.Command{
 	Use:   "scharr",
 	Short: "Apply Scharr to video images",
-	Long:  `Apply Scharr to video images`,
+	Long: `Apply Scharr to video images.
+
+Commands:
+  Use 'z' and 'x' keys to page through border calculation types.
+  Press 'esc' to exit.
+  Press 'space' to pause/resume filtering.
+  Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleScharrCmd()
 	},

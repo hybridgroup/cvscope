@@ -14,7 +14,12 @@ func init() {
 var medianBlurCmd = &cobra.Command{
 	Use:   "medianblur",
 	Short: "MedianBlur video images",
-	Long:  `MedianBlur video images using a median filter`,
+	Long: `Blur video images using a median filter.
+
+Commands:
+  Press 'esc' to exit.
+  Press 'space' to pause/resume filtering.
+  Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleMedianBlurCmd()
 	},

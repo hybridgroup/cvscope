@@ -16,7 +16,13 @@ var currentThreshold int
 var thresholdCmd = &cobra.Command{
 	Use:   "threshold",
 	Short: "Apply threshold filter to video images",
-	Long:  `Apply threshold filter to video images`,
+	Long: `Apply threshold filter to video images.
+
+Commands:
+  Use 'z' and 'x' keys to page through threshold calculation types.
+  Press 'esc' to exit.
+  Press 'space' to pause/resume filtering.
+  Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleThresholdCmd()
 	},

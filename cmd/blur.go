@@ -15,7 +15,12 @@ func init() {
 var blurCmd = &cobra.Command{
 	Use:   "blur",
 	Short: "Blur video images",
-	Long:  `Blur video images using a normalized box filter`,
+	Long: `Blur video images using a normalized box filter.
+
+Commands:
+  Press 'esc' to exit.
+  Press 'space' to pause/resume filtering.
+  Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleBlurCmd()
 	},

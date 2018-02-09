@@ -19,7 +19,13 @@ var laplacianScale, laplacianDelta float64
 var laplacianCmd = &cobra.Command{
 	Use:   "laplacian",
 	Short: "Apply Laplacian to video images",
-	Long:  `Apply Laplacian to video images`,
+	Long: `Apply Laplacian to video images.
+
+Commands:
+  Use 'z' and 'x' keys to page through border calculation types.
+  Press 'esc' to exit.
+  Press 'space' to pause/resume filtering.
+  Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		handleLaplacianCmd()
 	},
