@@ -18,7 +18,7 @@ var gaussianKX, gaussianKY int
 var gaussianSX, gaussianSY float64
 
 var gaussianBlurCmd = &cobra.Command{
-	Use:   "gaussianblur",
+	Use:   "gaussian",
 	Short: "Apply Gaussian blur to video images",
 	Long:  `Apply Gaussian blur to video images`,
 	Run: func(cmd *cobra.Command, args []string) {

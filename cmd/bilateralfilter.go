@@ -12,7 +12,7 @@ func init() {
 }
 
 var bilateralFilterCmd = &cobra.Command{
-	Use:   "bilateralfilter",
+	Use:   "bilateral",
 	Short: "Apply bilateral filter to video images",
 	Long:  `Apply bilateral filter to video images`,
 	Run: func(cmd *cobra.Command, args []string) {
