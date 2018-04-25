@@ -140,7 +140,7 @@ func thresholdWindowTitle() string {
 
 func thresholdGoCodeFragment(pos int, threshType string) {
 	codeFragmentHeader("Go")
-	fmt.Printf("\ngocv.Threshold(src, dest, %.1f, 255.0, gocv.%s)\n\n", float32(pos), threshType)
+	fmt.Printf("\ngocv.Threshold(src, &dest, %.1f, 255.0, gocv.%s)\n\n", float32(pos), threshType)
 }
 
 func thresholdPythonCodeFragment(pos int, threshType int) {

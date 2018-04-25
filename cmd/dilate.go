@@ -117,7 +117,7 @@ func dilateWindowTitle() string {
 func dilateGoCodeFragment(morphType string, x, y int) {
 	codeFragmentHeader("Go")
 	fmt.Printf("\nkernel := gocv.GetStructuringElement(gocv.%s, image.Pt(%d, %d))\n", morphType, x, y)
-	fmt.Printf("gocv.Dilate(src, dest, kernel)\n\n")
+	fmt.Printf("gocv.Dilate(src, &dest, kernel)\n\n")
 }
 
 func dilatePythonCodeFragment(morphType, x, y int) {

@@ -141,7 +141,7 @@ func gaussianBlurWindowTitle() string {
 
 func gaussianBlurGoCodeFragment(x, y int, sx, sy float64, borderType string) {
 	codeFragmentHeader("Go")
-	fmt.Printf("\ngocv.GaussianBlur(src, dest, image.Pt(%d, %d), %1.f, %1.f, gocv.%s)\n\n",
+	fmt.Printf("\ngocv.GaussianBlur(src, &dest, image.Pt(%d, %d), %1.f, %1.f, gocv.%s)\n\n",
 		x, y, sx, sy, borderType)
 }
 

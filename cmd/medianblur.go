@@ -99,7 +99,7 @@ func medianBlurWindowTitle() string {
 
 func medianBlurGoCodeFragment(x int) {
 	codeFragmentHeader("Go")
-	fmt.Printf("gocv.MedianBlur(src, dest, %d)\n\n", x)
+	fmt.Printf("gocv.MedianBlur(src, &dest, %d)\n\n", x)
 }
 
 func medianBlurPythonCodeFragment(x int) {

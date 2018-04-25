@@ -104,7 +104,7 @@ func bilateralFilterWindowTitle() string {
 
 func bilateralFilterGoCodeFragment(d int, sC, sS float64) {
 	codeFragmentHeader("Go")
-	fmt.Printf("gocv.BilateralFilter(src, dest, %d, %1.f, %1.f)\n\n", d, sC, sS)
+	fmt.Printf("gocv.BilateralFilter(src, &dest, %d, %1.f, %1.f)\n\n", d, sC, sS)
 }
 
 func bilateralFilterPythonCodeFragment(d int, sC, sS float64) {

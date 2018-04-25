@@ -131,7 +131,7 @@ func laplacianWindowTitle() string {
 
 func laplacianGoCodeFragment(x int, sx, sy float64, borderType string) {
 	codeFragmentHeader("Go")
-	fmt.Printf("\ngocv.Laplacian(src, dest, gocv.MatTypeCV16S, %d, %1.f, %1.f, gocv.%s)\n\n",
+	fmt.Printf("\ngocv.Laplacian(src, &dest, gocv.MatTypeCV16S, %d, %1.f, %1.f, gocv.%s)\n\n",
 		x, sx, sy, borderType)
 }
 

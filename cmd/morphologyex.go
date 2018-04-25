@@ -165,7 +165,7 @@ func morphologyExWindowTitle() string {
 func morphologyExGoCodeFragment(morphType string, x, y int, morphOp string) {
 	codeFragmentHeader("Go")
 	fmt.Printf("\nkernel := gocv.GetStructuringElement(gocv.%s, image.Pt(%d, %d))\n", morphType, x, y)
-	fmt.Printf("gocv.MorphologyEx(src, dest, gocv.%s, kernel)\n\n", morphOp)
+	fmt.Printf("gocv.MorphologyEx(src, &dest, gocv.%s, kernel)\n\n", morphOp)
 }
 
 func morphologyExPythonCodeFragment(morphType, x, y, morphOp int) {

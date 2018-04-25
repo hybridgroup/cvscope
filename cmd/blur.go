@@ -103,7 +103,7 @@ func blurWindowTitle() string {
 
 func blurGoCodeFragment(x, y int) {
 	codeFragmentHeader("Go")
-	fmt.Printf("gocv.Blur(src, dest, image.Pt(%d, %d))\n\n", x, y)
+	fmt.Printf("gocv.Blur(src, &dest, image.Pt(%d, %d))\n\n", x, y)
 }
 
 func blurPythonCodeFragment(x, y int) {

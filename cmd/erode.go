@@ -117,7 +117,7 @@ func erodeWindowTitle() string {
 func erodeGoCodeFragment(morphType string, x, y int) {
 	codeFragmentHeader("Go")
 	fmt.Printf("\nkernel := gocv.GetStructuringElement(gocv.%s, image.Pt(%d, %d))\n", morphType, x, y)
-	fmt.Printf("gocv.Erode(src, dest, kernel)\n\n")
+	fmt.Printf("gocv.Erode(src, &dest, kernel)\n\n")
 }
 
 func erodePythonCodeFragment(morphType, x, y int) {

@@ -143,7 +143,7 @@ func scharrWindowTitle() string {
 
 func scharrGoCodeFragment(dx, dy int, sx, sy float64, borderType string) {
 	codeFragmentHeader("Go")
-	fmt.Printf("\ngocv.scharr(src, dest, gocv.MatTypeCV16S, %d, %d, %1.f, %1.f, gocv.%s)\n\n",
+	fmt.Printf("\ngocv.scharr(src, &dest, gocv.MatTypeCV16S, %d, %d, %1.f, %1.f, gocv.%s)\n\n",
 		dx, dy, sx, sy, borderType)
 }
 
