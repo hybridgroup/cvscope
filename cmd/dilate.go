@@ -58,7 +58,7 @@ func handleDilateCmd() {
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
-		if ok := video.Read(img); !ok {
+		if ok := video.Read(&img); !ok {
 			fmt.Printf("Error cannot read device %d\n", deviceID)
 			return
 		}
@@ -68,7 +68,7 @@ MainLoop:
 
 		// Dilate image proccessing filter
 		kernel := gocv.GetStructuringElement(getCurrentMorphShape(currentDilateShape), image.Pt(trackerX.GetPos(), trackerY.GetPos()))
-		gocv.Dilate(img, processed, kernel)
+		gocv.Dilate(img, &processed, kernel)
 		kernel.Close()
 
 		// Display the processed image?

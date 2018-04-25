@@ -55,7 +55,7 @@ func handleBlurCmd() {
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
-		if ok := video.Read(img); !ok {
+		if ok := video.Read(&img); !ok {
 			fmt.Printf("Error cannot read device %d\n", deviceID)
 			return
 		}
@@ -64,7 +64,7 @@ MainLoop:
 		}
 
 		// Blur image proccessing filter
-		gocv.Blur(img, processed, image.Pt(trackerX.GetPos(), trackerY.GetPos()))
+		gocv.Blur(img, &processed, image.Pt(trackerX.GetPos(), trackerY.GetPos()))
 
 		// Display the processed image?
 		if pause {

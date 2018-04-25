@@ -65,7 +65,7 @@ func handleGaussianBlurCmd() {
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
-		if ok := video.Read(img); !ok {
+		if ok := video.Read(&img); !ok {
 			fmt.Printf("Error cannot read device %d\n", deviceID)
 			return
 		}
@@ -77,7 +77,7 @@ MainLoop:
 		validateGaussianBlurTrackers()
 
 		// GaussianBlur image proccessing filter
-		gocv.GaussianBlur(img, processed, image.Pt(gaussianKX, gaussianKY), gaussianSX, gaussianSY, getCurrentBorder(currentGaussianBlurBorder))
+		gocv.GaussianBlur(img, &processed, image.Pt(gaussianKX, gaussianKY), gaussianSX, gaussianSY, getCurrentBorder(currentGaussianBlurBorder))
 
 		// Display the processed image?
 		if pause {

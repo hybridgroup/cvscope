@@ -50,7 +50,7 @@ func handleMedianBlurCmd() {
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
-		if ok := video.Read(img); !ok {
+		if ok := video.Read(&img); !ok {
 			fmt.Printf("Error cannot read device %d\n", deviceID)
 			return
 		}
@@ -60,7 +60,7 @@ MainLoop:
 
 		// MedianBlur image processing filter
 		ksize := ensureOdd(tracker)
-		gocv.MedianBlur(img, processed, ksize)
+		gocv.MedianBlur(img, &processed, ksize)
 
 		// Display the processed image?
 		if pause {

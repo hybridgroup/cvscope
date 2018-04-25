@@ -61,7 +61,7 @@ func handleLaplacianCmd() {
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
-		if ok := video.Read(img); !ok {
+		if ok := video.Read(&img); !ok {
 			fmt.Printf("Error cannot read device %d\n", deviceID)
 			return
 		}
@@ -73,7 +73,7 @@ MainLoop:
 		validateLaplacianTrackers()
 
 		// Laplacian image proccessing filter
-		gocv.Laplacian(img, processed, gocv.MatTypeCV16S, laplacianSize, laplacianScale, laplacianDelta, getCurrentBorder(currentLaplacianBorder))
+		gocv.Laplacian(img, &processed, gocv.MatTypeCV16S, laplacianSize, laplacianScale, laplacianDelta, getCurrentBorder(currentLaplacianBorder))
 
 		// Display the processed image?
 		if pause {

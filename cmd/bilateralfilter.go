@@ -56,7 +56,7 @@ func handleBilateralFilterCmd() {
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
-		if ok := video.Read(img); !ok {
+		if ok := video.Read(&img); !ok {
 			fmt.Printf("Error cannot read device %d\n", deviceID)
 			return
 		}
@@ -65,7 +65,7 @@ MainLoop:
 		}
 
 		// BilateralFilter image processing filter
-		gocv.BilateralFilter(img, processed, diameter.GetPos(), float64(sigmaColor.GetPos()), float64(sigmaSpace.GetPos()))
+		gocv.BilateralFilter(img, &processed, diameter.GetPos(), float64(sigmaColor.GetPos()), float64(sigmaSpace.GetPos()))
 
 		// Display the processed image?
 		if pause {

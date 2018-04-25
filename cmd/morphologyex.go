@@ -60,7 +60,7 @@ func handleMorphologyExCmd() {
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
-		if ok := video.Read(img); !ok {
+		if ok := video.Read(&img); !ok {
 			fmt.Printf("Error cannot read device %d\n", deviceID)
 			return
 		}
@@ -70,7 +70,7 @@ MainLoop:
 
 		// MorphologyEx image proccessing filter
 		kernel := gocv.GetStructuringElement(getCurrentMorphShape(currentMorphologyExShape), image.Pt(morphologyExTrackerX.GetPos(), morphologyExTrackerY.GetPos()))
-		gocv.MorphologyEx(img, processed, gocv.MorphType(currentMorphOp), kernel)
+		gocv.MorphologyEx(img, &processed, gocv.MorphType(currentMorphOp), kernel)
 		kernel.Close()
 
 		// Display the processed image?

@@ -52,7 +52,7 @@ func handleThresholdCmd() {
 	fmt.Printf("Start reading camera device: %v\n", deviceID)
 MainLoop:
 	for {
-		if ok := video.Read(img); !ok {
+		if ok := video.Read(&img); !ok {
 			fmt.Printf("Error cannot read device %d\n", deviceID)
 			return
 		}
@@ -60,8 +60,8 @@ MainLoop:
 			continue
 		}
 
-		// Threshold image proccessing filter
-		gocv.Threshold(img, processed, float32(tracker.GetPos()), 255.0, getCurrentThreshold())
+		// Threshold image processing filter
+		gocv.Threshold(img, &processed, float32(tracker.GetPos()), 255.0, getCurrentThreshold())
 
 		// Display the processed image?
 		if pause {
