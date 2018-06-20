@@ -52,11 +52,11 @@ func handleBlurCmd() {
 	defer processed.Close()
 
 	pause := false
-	fmt.Printf("Start reading camera device: %v\n", deviceID)
+	fmt.Printf("Start reading video: %v\n", videoSource)
 MainLoop:
 	for {
 		if ok := video.Read(&img); !ok {
-			fmt.Printf("Error cannot read device %d\n", deviceID)
+			fmt.Printf("Start reading video: %v\n", videoSource)
 			return
 		}
 		if img.Empty() {

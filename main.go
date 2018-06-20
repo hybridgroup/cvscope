@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/hybridgroup/cvscope/cmd"
+import "./cmd"
 
 func main() {
 	cmd.Execute()

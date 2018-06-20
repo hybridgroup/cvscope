@@ -24,8 +24,7 @@ import (
 )
 
 var cfgFile string
-var deviceID int
-var videoFileName string
+var videoSource string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -51,8 +50,7 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cvscope.yaml)")
-	rootCmd.PersistentFlags().IntVarP(&deviceID, "deviceID", "d", 0, "video camera device ID")
-	rootCmd.PersistentFlags().StringVarP(&videoFileName, "filename", "f", "", "video file name")
+	rootCmd.PersistentFlags().StringVarP(&videoSource, "source", "f", "0", "video source, can be device number, file, or stream.")
 }
 
 // initConfig reads in config file and ENV variables if set.
