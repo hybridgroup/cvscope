@@ -100,7 +100,3 @@ func ensureOdd(tracker *gocv.Trackbar) int {
 	tracker.SetPos(size - 1)
 	return size - 1
 }
-
-func openVideoSource() (*gocv.VideoCapture, error) {
-	return gocv.OpenVideoCapture(videoSource)
-}

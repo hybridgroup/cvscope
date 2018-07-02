@@ -29,7 +29,7 @@ Commands:
 }
 
 func handleThresholdCmd() {
-	video, err := openVideoSource()
+	video, err := gocv.OpenVideoCapture(videoSource)
 	if err != nil {
 		fmt.Printf("Error opening video: %v\n", err)
 		return
