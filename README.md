@@ -18,7 +18,7 @@ Here is a CVscope command that opens a window using the default camera, and then
 
 ![CVscope](https://raw.githubusercontent.com/hybridgroup/cvscope/master/images/cvscope.png)
 
-While the CVscope program is running, you can generate the line of GoCV code that matches the current image filter settings. By pressing the `g` key, the code is output to the command line window where you started CVscope running. For example, when running the above command, pressing `g` generates the following code:
+While the CVscope program is running, you can generate the line of GoCV code that matches the current image filter settings. By pressing the `g` key, the code is output to the command line window where you started CVscope running. For example, when running the above command, pressing `g` generates the following:
 
     ===============================
     Go code for current filter:
@@ -37,3 +37,6 @@ CVscope does not yet support cross platform builds, so you must build the progra
 
     go build -o cvscope.exe main.go
 
+### License
+
+CVscope is licensed under the Apache 2.0 license. Copyright 2018 The Hybrid Group.
