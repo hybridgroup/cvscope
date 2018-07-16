@@ -135,7 +135,7 @@ func nextThreshold() {
 }
 
 func thresholdWindowTitle() string {
-	return getCurrentThresholdDescription() + " - Threshold - CV Toolkit"
+	return "Threshold - " + getCurrentThresholdDescription() + " - CVscope"
 }
 
 func thresholdGoCodeFragment(pos int, threshType string) {

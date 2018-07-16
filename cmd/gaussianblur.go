@@ -136,7 +136,7 @@ func validateGaussianBlurTrackers() {
 }
 
 func gaussianBlurWindowTitle() string {
-	return getCurrentBorderDescription(currentGaussianBlurBorder) + " - Gaussian Blur - CV Toolkit"
+	return "Gaussian Blur - " + getCurrentBorderDescription(currentGaussianBlurBorder) + " - CVscope"
 }
 
 func gaussianBlurGoCodeFragment(x, y int, sx, sy float64, borderType string) {

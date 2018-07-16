@@ -157,9 +157,9 @@ func nextMorphOp() {
 }
 
 func morphologyExWindowTitle() string {
-	return getCurrentMorphOpDescription(currentMorphOp) + " - " +
+	return "MorphologyEx - " + getCurrentMorphOpDescription(currentMorphOp) + " - " +
 		getCurrentMorphShapeDescription(currentMorphologyExShape) +
-		" - MorphologyEx - CVscope"
+		" - CVscope"
 }
 
 func morphologyExGoCodeFragment(morphType string, x, y int, morphOp string) {

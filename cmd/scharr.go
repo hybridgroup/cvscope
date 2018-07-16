@@ -49,10 +49,10 @@ func handleScharrCmd() {
 	scharrDYTracker.SetPos(0)
 
 	scharrScaleTracker = window.CreateTrackbar("scale", 60)
-	scharrScaleTracker.SetPos(0)
+	scharrScaleTracker.SetPos(30)
 
 	scharrDeltaTracker = window.CreateTrackbar("delta", 60)
-	scharrDeltaTracker.SetPos(0)
+	scharrDeltaTracker.SetPos(30)
 
 	img := gocv.NewMat()
 	defer img.Close()
@@ -119,15 +119,12 @@ MainLoop:
 
 // either ksize or sigmax have to be non-zero
 func validateScharrTrackers() {
-	if scharrDXTracker.GetPos() == 1 {
+	switch {
+	case scharrDXTracker.GetPos() == 1:
 		scharrDYTracker.SetPos(0)
-	}
-
-	if scharrDYTracker.GetPos() == 1 {
+	case scharrDYTracker.GetPos() == 1:
 		scharrDXTracker.SetPos(0)
-	}
-
-	if scharrDXTracker.GetPos() == 0 && scharrDYTracker.GetPos() == 0 {
+	case scharrDXTracker.GetPos() == 0 && scharrDYTracker.GetPos() == 0:
 		scharrDYTracker.SetPos(1)
 	}
 
@@ -138,12 +135,12 @@ func validateScharrTrackers() {
 }
 
 func scharrWindowTitle() string {
-	return getCurrentBorderDescription(currentScharrBorder) + " - Scharr - CV Toolkit"
+	return "Scharr - " + getCurrentBorderDescription(currentScharrBorder) + " - CVscope"
 }
 
 func scharrGoCodeFragment(dx, dy int, sx, sy float64, borderType string) {
 	codeFragmentHeader("Go")
-	fmt.Printf("\ngocv.scharr(src, &dest, gocv.MatTypeCV16S, %d, %d, %1.f, %1.f, gocv.%s)\n\n",
+	fmt.Printf("\ngocv.Scharr(src, &dest, gocv.MatTypeCV16S, %d, %d, %1.f, %1.f, gocv.%s)\n\n",
 		dx, dy, sx, sy, borderType)
 }
 

@@ -126,7 +126,7 @@ func validateLaplacianTrackers() {
 }
 
 func laplacianWindowTitle() string {
-	return getCurrentBorderDescription(currentLaplacianBorder) + " - Laplacian - CV Toolkit"
+	return "Laplacian - " + getCurrentBorderDescription(currentLaplacianBorder) + " - CVscope"
 }
 
 func laplacianGoCodeFragment(x int, sx, sy float64, borderType string) {

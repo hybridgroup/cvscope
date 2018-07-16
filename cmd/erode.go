@@ -111,7 +111,7 @@ MainLoop:
 }
 
 func erodeWindowTitle() string {
-	return getCurrentMorphShapeDescription(currentErodeShape) + " - Erode - CV Toolkit"
+	return "Erode - " + getCurrentMorphShapeDescription(currentErodeShape) + "- CVscope"
 }
 
 func erodeGoCodeFragment(morphType string, x, y int) {

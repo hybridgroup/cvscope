@@ -111,7 +111,7 @@ MainLoop:
 }
 
 func dilateWindowTitle() string {
-	return getCurrentMorphShapeDescription(currentDilateShape) + " - Dilate - CVscope"
+	return "Dilate - " + getCurrentMorphShapeDescription(currentDilateShape) + " - CVscope"
 }
 
 func dilateGoCodeFragment(morphType string, x, y int) {
