@@ -57,7 +57,7 @@ func handleBilateralFilterCmd() {
 MainLoop:
 	for {
 		if ok := video.Read(&img); !ok {
-			fmt.Printf("Start reading video: %v\n", videoSource)
+			fmt.Printf("Device closed: %v\n", videoSource)
 			return
 		}
 		if img.Empty() {
