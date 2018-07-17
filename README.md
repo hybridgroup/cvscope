@@ -1,12 +1,12 @@
 # CVscope
 
-CVscope is a visual tool for exploring video image filters that are part of OpenCV ((http://opencv.org)[http://opencv.org])
+CVscope is a visual tool for exploring video image filters that are part of OpenCV ([http://opencv.org](http://opencv.org)).
 
-CVscope itself is written in the Go programming language using GoCV ((https://gocv.io)[https://gocv.io])
+CVscope itself is written in the Go programming language using GoCV ([https://gocv.io](https://gocv.io)).
 
 ## How to install
 
-In order to use CVscope you must first have installed OpenCV and GoCV. Please follow the instructions located at (https://gocv.io/getting-started/)[https://gocv.io/getting-started/] for your operating system.
+In order to use CVscope you must first have installed OpenCV and GoCV. Please follow the instructions located at [https://gocv.io/getting-started/](https://gocv.io/getting-started/) for your operating system.
 
 You can then install CVscope by running:
 
