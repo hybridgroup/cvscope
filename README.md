@@ -1,6 +1,6 @@
 # CVscope
 
-CVscope is a visual tool for exploring video image filters that are part of OpenCV ([http://opencv.org](http://opencv.org)).
+CVscope is a CLI tool for visually exploring video image filters that are part of OpenCV ([http://opencv.org](http://opencv.org)).
 
 CVscope itself is written in the Go programming language using GoCV ([https://gocv.io](https://gocv.io)).
 
@@ -10,13 +10,13 @@ In order to use CVscope you must first have installed OpenCV and GoCV. Please fo
 
 You can then install CVscope by running:
 
-    go get gocv.io/x/cvscope
+    go get -u gocv.io/x/cvscope
 
 ## How to run
 
 Running the main program without any parameters:
 
-    go run main.go
+    cvscope
 
 will display a list of the various valid CVscope commands:
 
@@ -37,7 +37,7 @@ will display a list of the various valid CVscope commands:
 
 Here is a CVscope command that opens a window using the default camera, and then displays the video using the `Blur` filter:
 
-    go run main.go blur
+    cvscope blur
 
 ![CVscope](https://raw.githubusercontent.com/hybridgroup/cvscope/master/images/cvscope.png)
 
