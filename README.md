@@ -14,9 +14,26 @@ You can then install CVscope by running:
 
 ## How to run
 
-Just running the main program will display a list of the various valid CVscope commands:
+Running the main program without any parameters:
 
     go run main.go
+
+will display a list of the various valid CVscope commands:
+
+    CVscope is a command line tool for OpenCV that lets you visually explore various 
+    filters and algorithms for computer vision.
+
+    It can also generate Go code that them implements the needed commands using the GoCV
+    programming library. CVscope is itself written using GoCV.
+
+    Usage:
+    cvscope [command]
+
+    Available Commands:
+    bilateral   Apply bilateral filter to video images
+    blur        Blur video images
+    dilate      Dilate video images
+    ...
 
 Here is a CVscope command that opens a window using the default camera, and then displays the video using the `Blur` filter:
 
