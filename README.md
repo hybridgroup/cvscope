@@ -10,7 +10,7 @@ In order to use CVscope you must first have installed OpenCV and GoCV. Please fo
 
 You can then install CVscope by running:
 
-    go get github.com/hybridgroup/cvscope
+    go get gocv.io/x/cvscope
 
 ## How to run
 

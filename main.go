@@ -14,7 +14,7 @@
 
 package main
 
-import "./cmd"
+import "gocv.io/x/cvscope/cmd"
 
 func main() {
 	cmd.Execute()
