@@ -18,7 +18,7 @@ var thresholdCmd = &cobra.Command{
 	Short: "Apply threshold filter to video images",
 	Long: `Apply threshold filter to video images.
 
-Commands:
+Key commands:
   Use 'z' and 'x' keys to page through threshold calculation types.
   Press 'esc' to exit.
   Press 'space' to pause/resume filtering.

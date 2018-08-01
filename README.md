@@ -4,6 +4,8 @@
 
 CVscope is an experimental CLI tool for visually exploring video image filters and algorithms that are part of OpenCV ([http://opencv.org](http://opencv.org)).
 
+CVscope runs on Linux, macOS, and Windows 10.
+
 CVscope itself is written in the Go programming language using GoCV ([https://gocv.io](https://gocv.io)).
 
 ## How to install
@@ -51,6 +53,10 @@ You can also generate the Go code that matches the current image filter settings
     Go code for current filter:
     -------------------------------
     gocv.Blur(src, &dest, image.Pt(12, 12))
+
+You can obtain a list of all the supported keyboard commands and other details for a particular filter by using the `cvscope help` command. For example this displays help for the `blur` command:
+
+    cvscope help blur
 
 ## How to build
 

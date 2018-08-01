@@ -17,7 +17,7 @@ var blurCmd = &cobra.Command{
 	Short: "Blur video images",
 	Long: `Blur video images using a normalized box filter.
 
-Commands:
+Key commands:
   Press 'esc' to exit.
   Press 'space' to pause/resume filtering.
   Press 'g' to generate Go code based on the current filter.`,

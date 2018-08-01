@@ -22,7 +22,7 @@ var gaussianBlurCmd = &cobra.Command{
 	Short: "Apply Gaussian blur to video images",
 	Long: `Apply Gaussian blur to video images.
 
-Commands:
+Key commands:
   Use 'z' and 'x' keys to page through border calculation types.
   Press 'esc' to exit.
   Press 'space' to pause/resume filtering.

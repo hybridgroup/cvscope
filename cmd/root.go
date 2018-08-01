@@ -33,7 +33,7 @@ var rootCmd = &cobra.Command{
 	Long: `CVscope is a command line tool for OpenCV that lets you visually explore various 
 filters and algorithms for computer vision.
 
-It can also generate Go code that them implements the needed commands using the GoCV
+It can also generate Go code for the current filter command using the GoCV
 programming library. CVscope is itself written using GoCV.`,
 }
 

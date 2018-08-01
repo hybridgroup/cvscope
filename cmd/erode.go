@@ -19,7 +19,7 @@ var erodeCmd = &cobra.Command{
 	Short: "Erode video images",
 	Long: `Erode video images.
 	
-Commands:
+Key commands:
   Use 'z' and 'x' keys to page through structuring element shapes.
   Press 'esc' to exit.
   Press 'space' to pause/resume filtering.

@@ -20,7 +20,7 @@ var morphologyExCmd = &cobra.Command{
 	Short: "Perform MorphologyEx operations on video images",
 	Long: `Perform MorphologyEx operations on video images.
 
-Commands:
+Key commands:
   Use 'z' and 'x' keys to page through structuring element shapes.
   Use 'n' and 'm' keys to page through morphology operations.
   Press 'esc' to exit.
