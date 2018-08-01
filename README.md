@@ -2,7 +2,7 @@
 
 ![CVscope](https://raw.githubusercontent.com/hybridgroup/cvscope/master/images/cvscope-gaussian.png)
 
-CVscope is a CLI tool for visually exploring video image filters that are part of OpenCV ([http://opencv.org](http://opencv.org)).
+CVscope is an experimental CLI tool for visually exploring video image filters and algorithms that are part of OpenCV ([http://opencv.org](http://opencv.org)).
 
 CVscope itself is written in the Go programming language using GoCV ([https://gocv.io](https://gocv.io)).
 
