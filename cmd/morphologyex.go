@@ -5,6 +5,7 @@ import (
 	"image"
 
 	"github.com/spf13/cobra"
+	"gocv.io/x/cvscope/scope"
 	"gocv.io/x/gocv"
 )
 
@@ -32,7 +33,7 @@ Key commands:
 }
 
 func handleMorphologyExCmd() {
-	video, err := gocv.OpenVideoCapture(videoSource)
+	video, err := scope.OpenVideoCapture(videoSource)
 	if err != nil {
 		fmt.Printf("Error opening video: %v\n", err)
 		return
