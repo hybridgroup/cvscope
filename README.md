@@ -68,8 +68,10 @@ CVscope does not yet support cross platform builds, so you must build the progra
 
 ### Windows
 
+![CVscope](https://raw.githubusercontent.com/hybridgroup/cvscope/master/images/cvscope-gaussian-windows.png)
+
     go build -o cvscope.exe main.go
 
 ### License
 
-CVscope is licensed under the Apache 2.0 license. Copyright 2018 The Hybrid Group.
+CVscope is licensed under the Apache 2.0 license. Copyright 2018-2019 The Hybrid Group.
