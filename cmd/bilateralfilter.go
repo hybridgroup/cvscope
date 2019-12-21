@@ -55,7 +55,7 @@ func handleBilateralFilterCmd() {
 
 	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
-MainLoop:
+
 	for {
 		if ok := video.Read(&img); !ok {
 			fmt.Printf("Device closed: %v\n", videoSource)
@@ -90,7 +90,7 @@ MainLoop:
 			}
 			window.SetWindowTitle(text)
 		case esc:
-			break MainLoop
+			return
 		}
 	}
 }
