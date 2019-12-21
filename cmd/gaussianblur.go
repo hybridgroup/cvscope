@@ -90,30 +90,24 @@ MainLoop:
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
 		switch key {
-		case 122:
-			// 'z'
+		case zKey:
 			currentGaussianBlurBorder = prevBorder(currentGaussianBlurBorder)
 			window.SetWindowTitle(gaussianBlurWindowTitle())
-		case 120:
-			// 'x'
+		case xKey:
 			currentGaussianBlurBorder = nextBorder(currentGaussianBlurBorder)
 			window.SetWindowTitle(gaussianBlurWindowTitle())
-		case 103:
-			// 'g'
+		case gKey:
 			gaussianBlurGoCodeFragment(gaussianKX, gaussianKY, gaussianSX, gaussianSY, getCurrentBorderDescription(currentGaussianBlurBorder))
-		case 112:
-			// 'p'
+		case pKey:
 			gaussianBlurPythonCodeFragment(gaussianKX, gaussianKY, gaussianSX, gaussianSY, currentGaussianBlurBorder)
-		case 32:
-			// 'space'
+		case space:
 			pause = !pause
 			text := gaussianBlurWindowTitle()
 			if pause {
 				text = "**PAUSED** " + text
 			}
 			window.SetWindowTitle(text)
-		case 27:
-			// 'ESC'
+		case esc:
 			break MainLoop
 		}
 	}

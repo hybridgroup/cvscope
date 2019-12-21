@@ -74,30 +74,24 @@ MainLoop:
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
 		switch key {
-		case 122:
-			// 'z'
+		case zKey:
 			prevThreshold()
 			window.SetWindowTitle(thresholdWindowTitle())
-		case 120:
-			// 'x'
+		case xKey:
 			nextThreshold()
 			window.SetWindowTitle(thresholdWindowTitle())
-		case 103:
-			// 'g'
+		case gKey:
 			thresholdGoCodeFragment(tracker.GetPos(), getCurrentThresholdDescription())
-		case 112:
-			// 'p'
+		case pKey:
 			thresholdPythonCodeFragment(tracker.GetPos(), currentThreshold)
-		case 32:
-			// 'space'
+		case space:
 			pause = !pause
 			text := thresholdWindowTitle()
 			if pause {
 				text = "**PAUSED** " + text
 			}
 			window.SetWindowTitle(text)
-		case 27:
-			// 'ESC'
+		case esc:
 			break MainLoop
 		}
 	}

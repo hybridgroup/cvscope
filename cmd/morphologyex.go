@@ -23,7 +23,7 @@ var morphologyExCmd = &cobra.Command{
 
 Key commands:
   Use 'z' and 'x' keys to page through structuring element shapes.
-  Use 'n' and 'm' keys to page through morphology operations.
+  Use 'a' and 's' keys to page through morphology operations.
   Press 'esc' to exit.
   Press 'space' to pause/resume filtering.
   Press 'g' to generate Go code based on the current filter.`,
@@ -84,38 +84,30 @@ MainLoop:
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
 		switch key {
-		case 122:
-			// 'z'
+		case zKey:
 			currentMorphologyExShape = prevShape(currentMorphologyExShape)
 			window.SetWindowTitle(morphologyExWindowTitle())
-		case 120:
-			// 'x'
+		case xKey:
 			currentMorphologyExShape = nextShape(currentMorphologyExShape)
 			window.SetWindowTitle(morphologyExWindowTitle())
-		case 110:
-			// 'n'
+		case aKey:
 			prevMorphOp()
 			window.SetWindowTitle(morphologyExWindowTitle())
-		case 109:
-			// 'm'
+		case sKey:
 			nextMorphOp()
 			window.SetWindowTitle(morphologyExWindowTitle())
-		case 103:
-			// 'g'
+		case gKey:
 			morphologyExGoCodeFragment(getCurrentMorphShapeDescription(currentMorphologyExShape), morphologyExTrackerX.GetPos(), morphologyExTrackerY.GetPos(), getCurrentMorphOpDescription(currentMorphOp))
-		case 112:
-			// 'p'
+		case pKey:
 			morphologyExPythonCodeFragment(currentMorphologyExShape, morphologyExTrackerX.GetPos(), morphologyExTrackerY.GetPos(), currentMorphOp)
-		case 32:
-			// 'space'
+		case space:
 			pause = !pause
 			text := dilateWindowTitle()
 			if pause {
 				text = "**PAUSED** " + text
 			}
 			window.SetWindowTitle(text)
-		case 27:
-			// 'ESC'
+		case esc:
 			break MainLoop
 		}
 	}

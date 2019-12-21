@@ -77,22 +77,18 @@ MainLoop:
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
 		switch key {
-		case 103:
-			// 'g'
+		case gKey:
 			blurGoCodeFragment(trackerX.GetPos(), trackerY.GetPos())
-		case 112:
-			// 'p'
+		case pKey:
 			blurPythonCodeFragment(trackerX.GetPos(), trackerY.GetPos())
-		case 32:
-			// 'space'
+		case space:
 			pause = !pause
 			text := blurWindowTitle()
 			if pause {
 				text = "**PAUSED** " + text
 			}
 			window.SetWindowTitle(text)
-		case 27:
-			// 'ESC'
+		case esc:
 			break MainLoop
 		}
 	}

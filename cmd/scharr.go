@@ -89,30 +89,24 @@ MainLoop:
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
 		switch key {
-		case 122:
-			// 'z'
+		case zKey:
 			currentScharrBorder = prevBorder(currentScharrBorder)
 			window.SetWindowTitle(scharrWindowTitle())
-		case 120:
-			// 'x'
+		case xKey:
 			currentScharrBorder = nextBorder(currentScharrBorder)
 			window.SetWindowTitle(scharrWindowTitle())
-		case 103:
-			// 'g'
+		case gKey:
 			scharrGoCodeFragment(scharrDX, scharrDY, scharrScale, scharrDelta, getCurrentBorderDescription(currentScharrBorder))
-		case 112:
-			// 'p'
+		case pKey:
 			scharrPythonCodeFragment(scharrDX, scharrDY, scharrScale, scharrDelta, currentScharrBorder)
-		case 32:
-			// 'space'
+		case space:
 			pause = !pause
 			text := scharrWindowTitle()
 			if pause {
 				text = "**PAUSED** " + text
 			}
 			window.SetWindowTitle(text)
-		case 27:
-			// 'ESC'
+		case esc:
 			break MainLoop
 		}
 	}

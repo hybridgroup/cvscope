@@ -82,30 +82,24 @@ MainLoop:
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
 		switch key {
-		case 122:
-			// 'z'
+		case zKey:
 			currentErodeShape = prevShape(currentErodeShape)
 			window.SetWindowTitle(erodeWindowTitle())
-		case 120:
-			// 'x'
+		case xKey:
 			currentErodeShape = nextShape(currentErodeShape)
 			window.SetWindowTitle(erodeWindowTitle())
-		case 103:
-			// 'g'
+		case gKey:
 			erodeGoCodeFragment(getCurrentMorphShapeDescription(currentErodeShape), trackerX.GetPos(), trackerY.GetPos())
-		case 112:
-			// 'p'
+		case pKey:
 			erodePythonCodeFragment(currentErodeShape, trackerX.GetPos(), trackerY.GetPos())
-		case 32:
-			// 'space'
+		case space:
 			pause = !pause
 			text := erodeWindowTitle()
 			if pause {
 				text = "**PAUSED** " + text
 			}
 			window.SetWindowTitle(text)
-		case 27:
-			// 'ESC'
+		case esc:
 			break MainLoop
 		}
 	}

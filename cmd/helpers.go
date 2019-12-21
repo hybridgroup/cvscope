@@ -13,6 +13,17 @@ import (
 // 	Process(input gocv.Mat, output gocv.Mat)
 // }
 
+const (
+	zKey  = 122
+	xKey  = 120
+	aKey  = 97
+	sKey  = 115
+	gKey  = 103
+	pKey  = 112
+	space = 32
+	esc   = 27
+)
+
 func codeFragmentHeader(lang string) {
 	fmt.Println("===============================")
 	fmt.Printf("%s code for current filter:\n", lang)

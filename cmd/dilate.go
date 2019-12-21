@@ -82,30 +82,24 @@ MainLoop:
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
 		switch key {
-		case 122:
-			// 'z'
+		case zKey:
 			currentDilateShape = prevShape(currentDilateShape)
 			window.SetWindowTitle(dilateWindowTitle())
-		case 120:
-			// 'x'
+		case xKey:
 			currentDilateShape = nextShape(currentDilateShape)
 			window.SetWindowTitle(dilateWindowTitle())
-		case 103:
-			// 'g'
+		case gKey:
 			dilateGoCodeFragment(getCurrentMorphShapeDescription(currentDilateShape), trackerX.GetPos(), trackerY.GetPos())
-		case 112:
-			// 'p'
+		case pKey:
 			dilatePythonCodeFragment(currentDilateShape, trackerX.GetPos(), trackerY.GetPos())
-		case 32:
-			// 'space'
+		case space:
 			pause = !pause
 			text := dilateWindowTitle()
 			if pause {
 				text = "**PAUSED** " + text
 			}
 			window.SetWindowTitle(text)
-		case 27:
-			// 'ESC'
+		case esc:
 			break MainLoop
 		}
 	}

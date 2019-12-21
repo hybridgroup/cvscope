@@ -78,22 +78,18 @@ MainLoop:
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
 		switch key {
-		case 103:
-			// 'g'
+		case gKey:
 			bilateralFilterGoCodeFragment(diameter.GetPos(), float64(sigmaColor.GetPos()), float64(sigmaSpace.GetPos()))
-		case 112:
-			// 'p'
+		case pKey:
 			bilateralFilterPythonCodeFragment(diameter.GetPos(), float64(sigmaColor.GetPos()), float64(sigmaSpace.GetPos()))
-		case 32:
-			// 'space'
+		case space:
 			pause = !pause
 			text := bilateralFilterWindowTitle()
 			if pause {
 				text = "**PAUSED** " + text
 			}
 			window.SetWindowTitle(text)
-		case 27:
-			// 'ESC'
+		case esc:
 			break MainLoop
 		}
 	}

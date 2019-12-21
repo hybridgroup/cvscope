@@ -86,30 +86,24 @@ MainLoop:
 		// Check to see if the user has pressed any keys on the keyboard
 		key := window.WaitKey(1)
 		switch key {
-		case 122:
-			// 'z'
+		case zKey:
 			currentLaplacianBorder = prevBorder(currentLaplacianBorder)
 			window.SetWindowTitle(laplacianWindowTitle())
-		case 120:
-			// 'x'
+		case xKey:
 			currentLaplacianBorder = nextBorder(currentLaplacianBorder)
 			window.SetWindowTitle(laplacianWindowTitle())
-		case 103:
-			// 'g'
+		case gKey:
 			laplacianGoCodeFragment(laplacianSize, laplacianScale, laplacianDelta, getCurrentBorderDescription(currentLaplacianBorder))
-		case 112:
-			// 'p'
+		case pKey:
 			laplacianPythonCodeFragment(laplacianSize, laplacianScale, laplacianDelta, currentLaplacianBorder)
-		case 32:
-			// 'space'
+		case space:
 			pause = !pause
 			text := laplacianWindowTitle()
 			if pause {
 				text = "**PAUSED** " + text
 			}
 			window.SetWindowTitle(text)
-		case 27:
-			// 'ESC'
+		case esc:
 			break MainLoop
 		}
 	}
