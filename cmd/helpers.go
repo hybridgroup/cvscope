@@ -111,3 +111,11 @@ func ensureOdd(tracker *gocv.Trackbar) int {
 	tracker.SetPos(size - 1)
 	return size - 1
 }
+
+func handlePause(text string) {
+	pause = !pause
+	if pause {
+		text = "**PAUSED** " + text
+	}
+	window.SetWindowTitle(text)
+}

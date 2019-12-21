@@ -18,13 +18,19 @@ import (
 	"fmt"
 	"os"
 
+	"gocv.io/x/gocv"
+
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
-var cfgFile string
-var videoSource string
+var (
+	cfgFile     string
+	videoSource string
+	window      *gocv.Window
+	pause       bool
+)
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{

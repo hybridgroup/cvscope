@@ -40,7 +40,7 @@ func handleLaplacianCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(laplacianWindowTitle())
+	window = gocv.NewWindow(laplacianWindowTitle())
 	defer window.Close()
 
 	laplacianSizeTracker = window.CreateTrackbar("size", 31)
@@ -58,7 +58,6 @@ func handleLaplacianCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -97,12 +96,7 @@ func handleLaplacianCmd() {
 		case pKey:
 			laplacianPythonCodeFragment(laplacianSize, laplacianScale, laplacianDelta, currentLaplacianBorder)
 		case space:
-			pause = !pause
-			text := laplacianWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(laplacianWindowTitle())
 		case esc:
 			return
 		}

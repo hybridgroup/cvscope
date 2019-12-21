@@ -38,7 +38,7 @@ func handleErodeCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(erodeWindowTitle())
+	window = gocv.NewWindow(erodeWindowTitle())
 	defer window.Close()
 
 	img := gocv.NewMat()
@@ -55,7 +55,6 @@ func handleErodeCmd() {
 	trackerY.SetMin(1)
 	trackerY.SetPos(12)
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -93,12 +92,7 @@ func handleErodeCmd() {
 		case pKey:
 			erodePythonCodeFragment(currentErodeShape, trackerX.GetPos(), trackerY.GetPos())
 		case space:
-			pause = !pause
-			text := erodeWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(erodeWindowTitle())
 		case esc:
 			return
 		}

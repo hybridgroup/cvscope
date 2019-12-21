@@ -40,7 +40,7 @@ func handleScharrCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(scharrWindowTitle())
+	window = gocv.NewWindow(scharrWindowTitle())
 	defer window.Close()
 
 	scharrDXTracker = window.CreateTrackbar("dx", 1)
@@ -61,7 +61,6 @@ func handleScharrCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -100,12 +99,7 @@ func handleScharrCmd() {
 		case pKey:
 			scharrPythonCodeFragment(scharrDX, scharrDY, scharrScale, scharrDelta, currentScharrBorder)
 		case space:
-			pause = !pause
-			text := scharrWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(scharrWindowTitle())
 		case esc:
 			return
 		}

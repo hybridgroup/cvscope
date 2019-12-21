@@ -34,7 +34,7 @@ func handleMedianBlurCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(medianBlurWindowTitle())
+	window = gocv.NewWindow(medianBlurWindowTitle())
 	defer window.Close()
 
 	img := gocv.NewMat()
@@ -47,7 +47,6 @@ func handleMedianBlurCmd() {
 	tracker.SetMin(0)
 	tracker.SetPos(5)
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -78,12 +77,7 @@ func handleMedianBlurCmd() {
 		case pKey:
 			medianBlurPythonCodeFragment(tracker.GetPos())
 		case space:
-			pause = !pause
-			text := medianBlurWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(medianBlurWindowTitle())
 		case esc:
 			return
 		}

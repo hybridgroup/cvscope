@@ -41,7 +41,7 @@ func handleGaussianBlurCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(gaussianBlurWindowTitle())
+	window = gocv.NewWindow(gaussianBlurWindowTitle())
 	defer window.Close()
 
 	gaussianKsizeX = window.CreateTrackbar("ksize X", 25)
@@ -62,7 +62,6 @@ func handleGaussianBlurCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -101,12 +100,7 @@ func handleGaussianBlurCmd() {
 		case pKey:
 			gaussianBlurPythonCodeFragment(gaussianKX, gaussianKY, gaussianSX, gaussianSY, currentGaussianBlurBorder)
 		case space:
-			pause = !pause
-			text := gaussianBlurWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(gaussianBlurWindowTitle())
 		case esc:
 			return
 		}

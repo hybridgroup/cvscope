@@ -37,7 +37,7 @@ func handleThresholdCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(thresholdWindowTitle())
+	window = gocv.NewWindow(thresholdWindowTitle())
 	defer window.Close()
 
 	tracker := window.CreateTrackbar("threshold", 255)
@@ -49,7 +49,6 @@ func handleThresholdCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -85,12 +84,7 @@ func handleThresholdCmd() {
 		case pKey:
 			thresholdPythonCodeFragment(tracker.GetPos(), currentThreshold)
 		case space:
-			pause = !pause
-			text := thresholdWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(thresholdWindowTitle())
 		case esc:
 			return
 		}

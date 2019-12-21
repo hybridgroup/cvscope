@@ -38,7 +38,7 @@ func handleDilateCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(dilateWindowTitle())
+	window = gocv.NewWindow(dilateWindowTitle())
 	defer window.Close()
 
 	trackerX := window.CreateTrackbar("ksize X", 25)
@@ -55,7 +55,6 @@ func handleDilateCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -93,12 +92,7 @@ func handleDilateCmd() {
 		case pKey:
 			dilatePythonCodeFragment(currentDilateShape, trackerX.GetPos(), trackerY.GetPos())
 		case space:
-			pause = !pause
-			text := dilateWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(dilateWindowTitle())
 		case esc:
 			return
 		}

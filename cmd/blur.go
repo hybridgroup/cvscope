@@ -35,7 +35,7 @@ func handleBlurCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(blurWindowTitle())
+	window = gocv.NewWindow(blurWindowTitle())
 	defer window.Close()
 
 	trackerX := window.CreateTrackbar("ksize X", 25)
@@ -52,7 +52,6 @@ func handleBlurCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -82,12 +81,7 @@ func handleBlurCmd() {
 		case pKey:
 			blurPythonCodeFragment(trackerX.GetPos(), trackerY.GetPos())
 		case space:
-			pause = !pause
-			text := blurWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(blurWindowTitle())
 		case esc:
 			return
 		}

@@ -40,7 +40,7 @@ func handleMorphologyExCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(morphologyExWindowTitle())
+	window = gocv.NewWindow(morphologyExWindowTitle())
 	defer window.Close()
 
 	morphologyExTrackerX := window.CreateTrackbar("ksize X", 25)
@@ -57,7 +57,6 @@ func handleMorphologyExCmd() {
 	processed := gocv.NewMat()
 	defer processed.Close()
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -101,12 +100,7 @@ func handleMorphologyExCmd() {
 		case pKey:
 			morphologyExPythonCodeFragment(currentMorphologyExShape, morphologyExTrackerX.GetPos(), morphologyExTrackerY.GetPos(), currentMorphOp)
 		case space:
-			pause = !pause
-			text := dilateWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(dilateWindowTitle())
 		case esc:
 			return
 		}

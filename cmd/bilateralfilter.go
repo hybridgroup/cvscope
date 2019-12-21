@@ -34,7 +34,7 @@ func handleBilateralFilterCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(bilateralFilterWindowTitle())
+	window = gocv.NewWindow(bilateralFilterWindowTitle())
 	defer window.Close()
 
 	img := gocv.NewMat()
@@ -53,7 +53,6 @@ func handleBilateralFilterCmd() {
 	sigmaSpace := window.CreateTrackbar("sigma space", 255)
 	sigmaSpace.SetPos(0)
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -83,12 +82,7 @@ func handleBilateralFilterCmd() {
 		case pKey:
 			bilateralFilterPythonCodeFragment(diameter.GetPos(), float64(sigmaColor.GetPos()), float64(sigmaSpace.GetPos()))
 		case space:
-			pause = !pause
-			text := bilateralFilterWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(bilateralFilterWindowTitle())
 		case esc:
 			return
 		}

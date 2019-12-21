@@ -44,7 +44,7 @@ func handleAdaptiveThresholdCmd() {
 	}
 	defer video.Close()
 
-	window := gocv.NewWindow(adaptiveThresholdWindowTitle())
+	window = gocv.NewWindow(adaptiveThresholdWindowTitle())
 	defer window.Close()
 
 	img := gocv.NewMat()
@@ -62,7 +62,6 @@ func handleAdaptiveThresholdCmd() {
 	cTracker = window.CreateTrackbar("C", 512)
 	cTracker.SetPos(256)
 
-	pause := false
 	fmt.Printf("Start reading video: %v\n", videoSource)
 
 	for {
@@ -110,12 +109,7 @@ func handleAdaptiveThresholdCmd() {
 		case pKey:
 			adaptiveThresholdPythonCodeFragment(255.0, getCurrentAdaptiveThresholdDescription(), getCurrentAThresholdDescription(), blockSize, cValue)
 		case space:
-			pause = !pause
-			text := adaptiveThresholdWindowTitle()
-			if pause {
-				text = "**PAUSED** " + text
-			}
-			window.SetWindowTitle(text)
+			handlePause(adaptiveThresholdWindowTitle())
 		case esc:
 			return
 		}
