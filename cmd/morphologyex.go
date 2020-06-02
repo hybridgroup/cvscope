@@ -101,6 +101,8 @@ func handleMorphologyExCmd() {
 			morphologyExPythonCodeFragment(currentMorphologyExShape, morphologyExTrackerX.GetPos(), morphologyExTrackerY.GetPos(), currentMorphOp)
 		case space:
 			handlePause(dilateWindowTitle())
+		case wKey:
+			writeFile("morph", processed)
 		case esc:
 			return
 		}

@@ -83,6 +83,8 @@ func handleBilateralFilterCmd() {
 			bilateralFilterPythonCodeFragment(diameter.GetPos(), float64(sigmaColor.GetPos()), float64(sigmaSpace.GetPos()))
 		case space:
 			handlePause(bilateralFilterWindowTitle())
+		case wKey:
+			writeFile("bilateral", processed)
 		case esc:
 			return
 		}

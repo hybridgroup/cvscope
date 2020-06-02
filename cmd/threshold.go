@@ -85,6 +85,8 @@ func handleThresholdCmd() {
 			thresholdPythonCodeFragment(tracker.GetPos(), currentThreshold)
 		case space:
 			handlePause(thresholdWindowTitle())
+		case wKey:
+			writeFile("threshold", processed)
 		case esc:
 			return
 		}

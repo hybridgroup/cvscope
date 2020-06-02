@@ -29,6 +29,7 @@ Key commands:
   Use 'z' and 'x' keys to page through adaptive threshold calculation types.
   Use 'a' and 's' keys to page through threshold calculation types.
   Press 'esc' to exit.
+  Press 'w' to write JPG file.
   Press 'space' to pause/resume filtering.
   Press 'g' to generate Go code based on the current filter.`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -110,6 +111,8 @@ func handleAdaptiveThresholdCmd() {
 			adaptiveThresholdPythonCodeFragment(255.0, getCurrentAdaptiveThresholdDescription(), getCurrentAThresholdDescription(), blockSize, cValue)
 		case space:
 			handlePause(adaptiveThresholdWindowTitle())
+		case wKey:
+			writeFile("adaptive", processed)
 		case esc:
 			return
 		}

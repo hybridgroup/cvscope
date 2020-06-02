@@ -78,6 +78,8 @@ func handleMedianBlurCmd() {
 			medianBlurPythonCodeFragment(tracker.GetPos())
 		case space:
 			handlePause(medianBlurWindowTitle())
+		case wKey:
+			writeFile("medianblur", processed)
 		case esc:
 			return
 		}

@@ -97,6 +97,8 @@ func handleLaplacianCmd() {
 			laplacianPythonCodeFragment(laplacianSize, laplacianScale, laplacianDelta, currentLaplacianBorder)
 		case space:
 			handlePause(laplacianWindowTitle())
+		case wKey:
+			writeFile("laplacian", processed)
 		case esc:
 			return
 		}

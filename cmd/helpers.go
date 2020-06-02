@@ -20,6 +20,7 @@ const (
 	sKey  = 115
 	gKey  = 103
 	pKey  = 112
+	wKey  = 119
 	space = 32
 	esc   = 27
 )
@@ -118,4 +119,8 @@ func handlePause(text string) {
 		text = "**PAUSED** " + text
 	}
 	window.SetWindowTitle(text)
+}
+
+func writeFile(cmdName string, img gocv.Mat) {
+	gocv.IMWrite(cmdName+".jpg", img)
 }

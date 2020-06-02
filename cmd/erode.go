@@ -93,6 +93,8 @@ func handleErodeCmd() {
 			erodePythonCodeFragment(currentErodeShape, trackerX.GetPos(), trackerY.GetPos())
 		case space:
 			handlePause(erodeWindowTitle())
+		case wKey:
+			writeFile("erode", processed)
 		case esc:
 			return
 		}

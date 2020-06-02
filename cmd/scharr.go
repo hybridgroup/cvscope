@@ -100,6 +100,8 @@ func handleScharrCmd() {
 			scharrPythonCodeFragment(scharrDX, scharrDY, scharrScale, scharrDelta, currentScharrBorder)
 		case space:
 			handlePause(scharrWindowTitle())
+		case wKey:
+			writeFile("scharr", processed)
 		case esc:
 			return
 		}

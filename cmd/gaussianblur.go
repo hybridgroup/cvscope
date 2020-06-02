@@ -101,6 +101,8 @@ func handleGaussianBlurCmd() {
 			gaussianBlurPythonCodeFragment(gaussianKX, gaussianKY, gaussianSX, gaussianSY, currentGaussianBlurBorder)
 		case space:
 			handlePause(gaussianBlurWindowTitle())
+		case wKey:
+			writeFile("gaussian", processed)
 		case esc:
 			return
 		}

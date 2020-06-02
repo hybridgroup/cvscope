@@ -82,6 +82,8 @@ func handleBlurCmd() {
 			blurPythonCodeFragment(trackerX.GetPos(), trackerY.GetPos())
 		case space:
 			handlePause(blurWindowTitle())
+		case wKey:
+			writeFile("blur", processed)
 		case esc:
 			return
 		}

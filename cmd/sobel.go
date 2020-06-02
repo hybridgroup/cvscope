@@ -103,6 +103,8 @@ func handleSobelCmd() {
 			sobelPythonCodeFragment(sobelDX, sobelDY, sobelKSize, sobelScale, sobelDelta, currentSobelBorder)
 		case space:
 			handlePause(sobelWindowTitle())
+		case wKey:
+			writeFile("sobel", processed)
 		case esc:
 			return
 		}

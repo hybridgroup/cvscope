@@ -88,6 +88,8 @@ func handleCannyCmd() {
 			cannyPythonCodeFragment(float32(tracker1.GetPos()), float32(tracker2.GetPos()))
 		case space:
 			handlePause(cannyWindowTitle())
+		case wKey:
+			writeFile("canny", processed)
 		case esc:
 			return
 		}

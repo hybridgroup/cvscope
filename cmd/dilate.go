@@ -93,6 +93,8 @@ func handleDilateCmd() {
 			dilatePythonCodeFragment(currentDilateShape, trackerX.GetPos(), trackerY.GetPos())
 		case space:
 			handlePause(dilateWindowTitle())
+		case wKey:
+			writeFile("dilate", processed)
 		case esc:
 			return
 		}
