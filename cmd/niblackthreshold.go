@@ -14,10 +14,10 @@ func init() {
 }
 
 var (
-	currentBinarizationMethod   int
+	currentBinarizationMethod int
 	//currentAThreshold          int
 	//blockSize                  int
-	kValue, rValue                     float32
+	kValue, rValue     float32
 	kTracker, rTracker *gocv.Trackbar
 )
 
@@ -110,7 +110,7 @@ func handleNiblackThresholdCmd() {
 			nextAThreshold()
 			window.SetWindowTitle(niblackThresholdWindowTitle())
 		case gKey:
-			niblackThresholdGoCodeFragment(255.0, getCurrentBinarizationMethodDescription(), getCurrentAThresholdDescription(), blockSize, kValue)
+			niblackThresholdGoCodeFragment(255.0, getCurrentAThresholdDescription(), blockSize, kValue, getCurrentBinarizationMethodDescription(), rValue)
 		case pKey:
 			niblackThresholdPythonCodeFragment(255.0, getCurrentBinarizationMethodDescription(), getCurrentAThresholdDescription(), blockSize, kValue)
 		case space:
@@ -126,7 +126,7 @@ func handleNiblackThresholdCmd() {
 // blocksize has to be odd. k value ranges from 0.0 to 1.0.
 func validateNiblackThresholdTrackers() {
 	blockSize = ensureOdd(blockSizeTracker)
-	kValue = float32(kTracker.GetPos())/10.0
+	kValue = float32(kTracker.GetPos()) / 10.0
 	rValue = float32(rTracker.GetPos())
 }
 
@@ -190,9 +190,9 @@ func niblackThresholdWindowTitle() string {
 	return "niBlackThreshold - " + getCurrentBinarizationMethodDescription() + " - " + getCurrentAThresholdDescription() + " - CVscope"
 }
 
-func niblackThresholdGoCodeFragment(mv float32, at string, t string, bs int, c float32) {
+func niblackThresholdGoCodeFragment(mv float32, at string, bs int, k float32, t string, r float32) {
 	codeFragmentHeader("Go")
-	fmt.Printf("contrib.NiblackThreshold(src, &dest, %1.f, gocv.%s, gocv.%s, %d, %1.f)\n\n", mv, at, t, bs, c)
+	fmt.Printf("contrib.NiblackThreshold(src, &dest, %.1f, gocv.%s, %d, %.1f, contrib.%s, %.1f)\n\n", mv, at, bs, k, t, r)
 }
 
 func niblackThresholdPythonCodeFragment(mv float32, at string, t string, bs int, c float32) {
