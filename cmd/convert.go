@@ -76,7 +76,7 @@ func handleConvertCmd() {
 		key := window.WaitKey(1)
 		switch key {
 		case gKey:
-			convertGoCodeFragment(trackerA.GetPos(), trackerB.GetPos())
+			convertGoCodeFragment(float32(trackerA.GetPos())/10.0, float32(trackerB.GetPos()))
 		case pKey:
 			convertPythonCodeFragment(trackerA.GetPos(), trackerB.GetPos())
 		case space:
@@ -93,9 +93,9 @@ func convertWindowTitle() string {
 	return "Convert - CVscope"
 }
 
-func convertGoCodeFragment(x, y int) {
+func convertGoCodeFragment(a, b float32) {
 	codeFragmentHeader("Go")
-	fmt.Printf("gocv.ConvertTo(src, &dest, kernel)\n\n")
+	fmt.Printf("src.ConvertTo(&dest, %.1f, %.1f)\n\n", a, b)
 }
 
 func convertPythonCodeFragment(x, y int) {
